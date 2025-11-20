@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Who I Am - Paride Lauretti</title>
+    <style>
+        /* --- CSS STYLES: Swiss Minimal (CV Page) --- */
+        
+        :root {
+            --bg-color: #ffffff;
+            --text-primary: #111111;
+            --text-secondary: #666666;
+            --text-light: #a1a1a1;
+            --line-color: #e5e5e5;
+            
+            --font-main: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            
+            --spacing-section: 100px;
+            --spacing-item: 50px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.5;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: opacity 0.3s;
+            border-bottom: 1px solid transparent;
+        }
+        a:hover { 
+            border-bottom: 1px solid var(--text-primary);
+        }
+
+        /* --- LAYOUT --- */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* --- HEADER (Back Navigation) --- */
+        header {
+            padding-top: 50px;
+            padding-bottom: 30px;
+            margin-bottom: 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .back-link {
+            font-size: 1.1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .back-arrow { font-size: 1.2rem; }
+
+        .page-title {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+
+        /* --- INTRO --- */
+        .page-intro {
+            margin-bottom: 80px;
+            max-width: 900px;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
+            font-weight: 400;
+            margin-bottom: 30px;
+            line-height: 1.2;
+        }
+        
+        .download-btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: var(--text-primary);
+            color: #fff;
+            font-weight: 500;
+            border-radius: 2px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            transition: background-color 0.3s;
+        }
+        .download-btn:hover {
+            background-color: #333;
+            border-bottom: none;
+            color: #fff;
+        }
+
+        /* --- GRID SYSTEM (Label Left, Content Right) --- */
+        .section {
+            display: grid;
+            grid-template-columns: 250px 1fr; 
+            margin-bottom: var(--spacing-section);
+            border-top: 1px solid var(--line-color);
+            padding-top: 40px;
+        }
+
+        .section-label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            position: sticky;
+            top: 40px;
+            height: fit-content;
+        }
+
+        .section-content {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-item);
+        }
+
+        /* --- CONTENT ITEMS --- */
+        .item {
+            display: grid;
+            grid-template-columns: 1fr 180px;
+            gap: 30px;
+            padding-bottom: 30px;
+            border-bottom: 1px dashed var(--line-color);
+        }
+        
+        .section-content .item:last-of-type {
+            border-bottom: none;
+        }
+
+        .item-main h3 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 5px;
+        }
+
+        .item-role {
+            font-size: 1.05rem;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            display: block;
+            font-weight: 600;
+        }
+
+        .item-desc {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            line-height: 1.6;
+        }
+
+        .item-desc ul {
+            list-style: none;
+            margin-top: 8px;
+        }
+
+        .item-desc li {
+            position: relative;
+            padding-left: 18px;
+            margin-bottom: 5px;
+        }
+
+        .item-desc li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #ddd;
+        }
+
+        .item-meta {
+            text-align: right;
+            font-size: 0.9rem;
+            color: var(--text-light);
+            font-feature-settings: "tnum";
+            line-height: 1.6;
+        }
+
+        /* --- SKILLS & INTERESTS (Simple List) --- */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+        .skill-group h4 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        .skill-list {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            border-top: 1px solid var(--line-color);
+            padding: 60px 0;
+            margin-top: 80px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 900px) {
+            .section {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .section-label {
+                position: static;
+                margin-bottom: 10px;
+            }
+            .item {
+                grid-template-columns: 1fr;
+            }
+            .item-meta {
+                text-align: left;
+                order: -1;
+                margin-bottom: 5px;
+            }
+            h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- HEADER -->
+        <header>
+            <a href="index.html" class="back-link">
+                <span class="back-arrow">←</span> Back
+            </a>
+            <span class="page-title">Who I Am</span>
+        </header>
+
+        <!-- PAGE INTRO -->
+        <div class="page-intro">
+            <h1>
+                Computer Science & Economics student based in Milan.
+            </h1>
+            <p class="item-desc">
+                I combine a rigorous mathematical background with practical programming skills to solve complex financial and economic problems. Currently focused on quantitative analysis and machine learning.
+            </p>
+            <!-- Placeholder for PDF Download if you have one -->
+            <a href="#" class="download-btn" onclick="alert('To add your PDF, upload it to GitHub and change the href link in the code!')">Download Resume (PDF)</a>
+        </div>
+
+        <!-- SECTION: EDUCATION -->
+        <div class="section">
+            <div class="section-label">Education</div>
+            <div class="section-content">
+                
+                <div class="item">
+                    <div class="item-main">
+                        <h3>Bocconi University</h3>
+                        <span class="item-role">BSc in Computer Science and Economics</span>
+                        <div class="item-desc">
+                            <ul>
+                                <li>Current GPA: 29.4/30</li>
+                                <li>Relevant courses: Algorithms, Statistics, Linear Algebra, Multivariable Calculus, Macroeconomics</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="item-meta">
+                        Milan, IT<br>Aug 2023 — Jun 2027
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="item-main">
+                        <h3>Scientific High School Cosimo De Giorgi</h3>
+                        <span class="item-role">High School Diploma in Math and Science</span>
+                        <div class="item-desc">
+                            <ul>
+                                <li>Final grade: 100/100</li>
+                                <li>Relevant courses: Mathematics, Physics, Chemistry, Philosophy, Literature</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="item-meta">
+                        Lecce, IT<br>Sep 2018 — Jul 2023
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- SECTION: EXPERIENCE -->
+        <div class="section">
+            <div class="section-label">Experience</div>
+            <div class="section-content">
+                
+                <div class="item">
+                    <div class="item-main">
+                        <h3>Taula Capital</h3>
+                        <span class="item-role">Investment Analyst Summer Internship</span>
+                        <div class="item-desc">
+                            Global discretionary macro hedge fund ($6.5bn AUM), specializing in macro and relative value strategies within a disciplined risk framework.
+                            <ul>
+                                <li>Worked alongside the investment team on the development of a systematic short-gamma strategy and the delivery of trade ideas.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="item-meta">
+                        London, UK<br>Jun 2025 — Aug 2025
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="item-main">
+                        <h3>University of Bari</h3>
+                        <span class="item-role">Machine Learning Research Intern</span>
+                        <div class="item-desc">
+                            <ul>
+                                <li>Engaged in an intensive, theory-focused program on advanced algorithms under the mentorship of PhD experts in physics.</li>
+                                <li>Deep dive into feature engineering, supervised and unsupervised learning techniques.</li>
+                                <li>Applied theoretical knowledge at rAIse Srl to implement and optimize classification techniques, particularly using Random Forest algorithms.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="item-meta">
+                        Bari, IT<br>Jun 2024 — Aug 2024
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="item-main">
+                        <h3>Bocconi Students Investment Club</h3>
+                        <span class="item-role">Head of Quant Division</span>
+                        <div class="item-desc">
+                            BSIC is the leading Finance student association at Bocconi University since 2010.
+                            <ul>
+                                <li>Working on the quantitative library, the recruitment dashboard, and a finance-oriented data science project.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="item-meta">
+                        Milan, IT<br>Jan 2025 — Present
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="item-main">
+                        <h3>Bocconi AI & Neuroscience</h3>
+                        <span class="item-role">Head of HR & AI Research (Bending Spoons partner)</span>
+                        <div class="item-desc">
+                            <ul>
+                                <li>Led the HR interview process, defining structure, creating interview guides and questions.</li>
+                                <li>Developed a ChatGPT-based system capable of accurately describing graphs strictly based on provided data.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="item-meta">
+                        Milan, IT<br>Feb 2024 — Present
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="item-main">
+                        <h3>Garda Capital Partners</h3>
+                        <span class="item-role">Insight Program</span>
+                        <div class="item-desc">
+                            Chosen as the sole student to participate in the Insight Program.
+                        </div>
+                    </div>
+                    <div class="item-meta">
+                        Zug, CH<br>Feb 2025
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- SECTION: HONORS -->
+        <div class="section">
+            <div class="section-label">Honors & Awards</div>
+            <div class="section-content">
+                
+                <div class="item">
+                    <div class="item-main">
+                        <h3>Italian Mathematical Olympiads</h3>
+                        <div class="item-desc">
+                            Over 300,000 participants.
+                            <ul>
+                                <li>Bronze medal (2023, 2021) and Silver medal (2022) in individual competitions.</li>
+                                <li>14th national place as the captain of the high school team (2022).</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="item-meta">2021 — 2023</div>
+                </div>
+
+                <div class="item">
+                    <div class="item-main">
+                        <h3>Fasanara STEM Award Scholarship</h3>
+                        <div class="item-desc">
+                            Recipient of the Fasanara STEM Award Scholarship at Bocconi University, covering €45,000 in tuition and offering exclusive access to a network of donors and alumni.
+                        </div>
+                    </div>
+                    <div class="item-meta">2023</div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- SECTION: SKILLS & INTERESTS -->
+        <div class="section">
+            <div class="section-label">Skills & Interests</div>
+            <div class="section-content">
+                
+                <div class="skills-grid">
+                    <div class="skill-group">
+                        <h4>IT Skills</h4>
+                        <p class="skill-list">
+                            Python (NumPy, Pandas, Matplotlib), R, SQL, DuckDB, Dagster, Excel
+                        </p>
+                    </div>
+                    <div class="skill-group">
+                        <h4>Interests</h4>
+                        <p class="skill-list">
+                            Financial Engineering, Mathematics, Probability, Combinatorics, Problem solving, Data Science, Algorithm Trading, Artificial Intelligence, Statistics, Cryptocurrency, Cinematography, Calisthenics
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- SECTION: EXTRACURRICULAR -->
+        <div class="section">
+            <div class="section-label">Extracurricular</div>
+            <div class="section-content">
+                <div class="item">
+                    <div class="item-main">
+                        <div class="item-desc">
+                            MATEpristem Author | Lead The Future Mentee | Minerva Investment Management Society Investment Research | Scientific High School Cosimo De Giorgi Student Representative | City Council of Lecce Member | Crowwd Member | Bocconi Students Quant Society Mathematics Research | Bocconi Students for Machine Learning Production Team
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <footer>
+            <div>&copy; 2025 Paride Lauretti</div>
+            <div>
+                <a href="mailto:paridelauretti@gmail.com">Contact Me</a>
+            </div>
+        </footer>
+
+    </div>
+
+</body>
+</html>
